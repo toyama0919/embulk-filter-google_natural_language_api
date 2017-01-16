@@ -55,6 +55,7 @@ module Embulk
           @key_names.each do |key_name|
             @body["document"]["content"] = hash[key_name]
             @request.body = @body.to_json
+            Embulk.logger.debug "request body => #{@request.body}"
 
             @http.start do |h|
               response = h.request(@request)
